@@ -1,71 +1,16 @@
-const express = require("express");
-const app = express();
+const express = require("express"); // express require gareko
+const bookRoute = require("./routes/bookRoute");
 
+const app = express(); // express lai trigger gareko
 require("./database/connection");
+app.use(express.json());
+// let app = require("express")()
 
-// const app = require('express')()
-
-/*
-
-app.get("/", (req, res) => {
-  res.json({
-    name: "rita",
-    address: "KTM",
-  });
-});
-
-app.get("/about", (req, res) => {
-  res.json({
-    name: "I love you",
-  });
-});
-
-app.post("/register", function (req, res) {
-  res.json({
-    name: "registered succesfully",
-  });
-});
-
-app.get("/register", function (req, res) {
-  res.json({
-    name: "registered succesfully",
-  });
-});
-
-*/
-
-app.get("/books", function (req, res) {
-  //llogic to fetch books from database
-
-  res.json({
-    message: "Books fetched successfully",
-  });
-});
-
-app.post("/books", function (req, res) {
-  //logic to add book to database goes here..
-
-  res.json({
-    message: "Books added successfully",
-  });
-});
-
-app.delete("/books/:id", function (req, res) {
-  //logic to delete book
-  res.json({
-    message: "Books deleted successfully",
-  });
-});
-
-app.patch("/books/:id", function (req, res) {
-  res.json({
-    message: "Books update successfully",
-  });
-});
-
-// DATABASE_URL =
-//   "postgresql://postgres.buemgvllupsqlqxoqlfk:[9502]@aws-0-ap-south-1.pooler.supabase.com:6543/postgres";
+// localhost:4000/api+ /hello = localhost:4000/api/hello
+// localhost:4000/api + /books/:id = localhost:4000/api/books/:id
+// localhost:4000/api/haha/ + /books = localhost:4000/api/haha//books
+app.use("/api/books", bookRoute);
 
 app.listen(4000, function () {
-  console.log("server/project/backend has started at port 3000.");
+  console.log("project/server/backend has started at port 4000");
 });
